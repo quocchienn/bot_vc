@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: voucher-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      BOT_TOKEN:
+        fromDatabase:
+          name: BOT_TOKEN
+          property: value
+    autoDeploy: true
+    disk:
+      name: data
+      mountPath: /data
+      sizeGB: 1
